@@ -1,4 +1,6 @@
-const { User } = require('./models'); 
+const { User } = require('../../models');
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
 
 const index = async (req, res) => {
@@ -27,12 +29,15 @@ const edit = async (req, res) => {
 };
 
 
-const create = async (req, res) => {
+const register = async (req, res) => {
   try {
     const request = req.body;
-    console.log(request);
+    const email = request.email
+    const existingUser = await User.findOne({where: {email}})
+    if (existingUser) {
+        return res.status(400).json({ error: 'User already exists' });
+      }
     
-   
     const newUser = await User.create(request);
     res.status(201).json(newUser);
   } catch (error) {
@@ -66,7 +71,6 @@ const deleteUser = async (req, res) => {
   try {
     const id = req.params.id;
 
-
     const user = await User.findByPk(id);
 
     if (!user) {
@@ -84,7 +88,7 @@ const deleteUser = async (req, res) => {
 module.exports = {
   index,
   edit,
-  create,
+  register,
   update,
   deleteUser
 };
