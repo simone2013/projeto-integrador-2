@@ -14,12 +14,12 @@ Certifique-se de ter Sequelize e o driver do banco de dados (neste exemplo, MySQ
 
 ```bash
 npm install sequelize mysql2
-
-Passo 2: Configurar Arquivo de Conexão
+```
+### Passo 2: Configurar Arquivo de Conexão
 
 Crie um arquivo config/config.js com a configuração para diferentes ambientes (desenvolvimento, teste e produção). Exemplo para MySQL:
 
-javascript
+```javascript
 
 require('dotenv').config();
 
@@ -31,27 +31,13 @@ module.exports = {
     host: process.env.DB_HOST || '127.0.0.1',
     dialect: 'mysql',
   },
-  test: {
-    username: process.env.DB_USERNAME || 'root',
-    password: process.env.DB_PASSWORD || null,
-    database: process.env.DB_DATABASE_TEST || 'node_test',
-    host: process.env.DB_HOST || '127.0.0.1',
-    dialect: 'mysql',
-  },
-  production: {
-    username: process.env.DB_USERNAME || 'root',
-    password: process.env.DB_PASSWORD || null,
-    database: process.env.DB_DATABASE_PRODUCTION || 'node_production',
-    host: process.env.DB_HOST || '127.0.0.1',
-    dialect: 'mysql',
-  },
 };
-
-Passo 3: Criar Arquivo de Conexão com o Sequelize
+```
+### Passo 3: Criar Arquivo de Conexão com o Sequelize
 
 Crie o arquivo config/db.js para inicializar a conexão com o Sequelize:
 
-javascript
+```javascript
 
 const { Sequelize } = require('sequelize');
 const config = require('./config/config');
@@ -65,41 +51,42 @@ const sequelize = new Sequelize(dbConfig.database, dbConfig.username, dbConfig.p
 });
 
 module.exports = sequelize;
-
+```
 2. Criação e Execução de Migrações
-Passo 4: Instalar Sequelize CLI
+### Passo 4: Instalar Sequelize CLI
 
 Instale o Sequelize CLI globalmente para gerenciar migrações e outras tarefas:
 
-bash
+```bash
 
 npm install --save-dev sequelize-cli
+```
 
-Passo 5: Inicializar o Sequelize CLI
+### Passo 5: Inicializar o Sequelize CLI
 
 Crie a estrutura de diretórios necessária e o arquivo de configuração:
 
-bash
-
+```bash
 npx sequelize-cli init
-
+```
 Isso criará as pastas config, migrations, models, e seeders.
-Passo 6: Configurar a Estrutura da Migração
+### Passo 6: Configurar a Estrutura da Migração
 
 Se necessário, ajuste o arquivo config/config.js para corresponder à estrutura de pastas e configuração desejadas.
-Passo 7: Criar uma Migração
+### Passo 7: Criar uma Migração
 
 Para criar uma nova migração, execute o comando:
 
-bash
+```bash
 
 npx sequelize-cli migration:generate --name create-users-table
+`````
 
-Passo 8: Definir a Migração
+### Passo 8: Definir a Migração
 
 Edite o arquivo de migração gerado em migrations/ para definir a estrutura da tabela. Exemplo:
 
-javascript
+```javascript
 
 'use strict';
 
@@ -135,30 +122,33 @@ module.exports = {
     await queryInterface.dropTable('Users');
   },
 };
+```
 
-Passo 9: Executar as Migrações
+### Passo 9: Executar as Migrações
 
 Aplique as migrações ao banco de dados com o comando:
 
-bash
-
+```bash
 npx sequelize-cli db:migrate
+```
 
 3. Criação de Modelos
-Passo 10: Criar um Modelo
+### Passo 10: Criar um Modelo
 
 Para criar um novo modelo, use o comando:
 
-bash
+```bash
 
 npx sequelize-cli model:generate --name User --attributes username:string,password:string
 
+```
+
 Isso criará um arquivo de modelo em models/ e uma migração correspondente.
-Passo 11: Definir o Modelo
+### Passo 11: Definir o Modelo
 
 Edite o arquivo do modelo em models/user.js para definir a estrutura e os relacionamentos do modelo:
 
-javascript
+```javascript
 
 'use strict';
 module.exports = (sequelize, DataTypes) => {
@@ -177,3 +167,5 @@ module.exports = (sequelize, DataTypes) => {
   };
   return User;
 };
+
+```
