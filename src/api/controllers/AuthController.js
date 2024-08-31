@@ -1,17 +1,90 @@
-const { User } = require('./models'); // Certifique-se de que o caminho está correto
+const { User } = require('./models'); 
 
-const getAllUsers = async (req, res) => {
+
+const index = async (req, res) => {
   try {
-    console.log('Fetching all users');
-    const users = await User.findAll(); // Verifique se User é definido
-    console.log('Users fetched:', users);
+    const users = await User.findAll();
     res.json(users);
   } catch (error) {
-    console.error('Error fetching users:', error);
+    res.status(500).json({ error: error.message });
+  }
+};
+
+
+const edit = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const user = await User.findByPk(id);
+
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    res.json(user);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+
+const create = async (req, res) => {
+  try {
+    const request = req.body;
+    console.log(request);
+    
+   
+    const newUser = await User.create(request);
+    res.status(201).json(newUser);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+
+const update = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const { name, email } = req.body;
+
+
+    const user = await User.findByPk(id);
+
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    // Atualiza o usuário
+    await user.update({ name, email });
+    res.json(user); // Retorna o usuário atualizado
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+
+const deleteUser = async (req, res) => {
+  try {
+    const id = req.params.id;
+
+
+    const user = await User.findByPk(id);
+
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+
+    await user.destroy();
+    res.status(204).send();
+  } catch (error) {
     res.status(500).json({ error: error.message });
   }
 };
 
 module.exports = {
-  getAllUsers,
+  index,
+  edit,
+  create,
+  update,
+  deleteUser
 };
