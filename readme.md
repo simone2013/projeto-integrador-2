@@ -1,4 +1,6 @@
 
+![Instalação do Express](public/img/pasta_inicial.png)
+
 ---
 
 ### Guia de Início para Projeto Node.js
