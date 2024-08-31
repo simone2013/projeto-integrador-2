@@ -1,0 +1,18 @@
+# Node modules
+node_modules/
+
+# Logs
+*.log
+
+# Ambiente
+.env
+
+# Sistema de arquivos
+.DS_Store
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# Build output
+dist/
+build/
