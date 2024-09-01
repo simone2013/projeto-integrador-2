@@ -1,9 +1,19 @@
 const jwt = require('jsonwebtoken');
-const { User } = require('../models'); // Certifique-se de que o caminho está correto
+const { User, Token } = require('../models'); // Certifique-se de que o caminho está correto
 
-const authenticateToken = (req, res, next) => {
+const authenticateToken = async (req, res, next) => {
     const authHeader = req.headers['authorization'];
+
     const token = authHeader && authHeader.split(' ')[1];
+
+    const findToken = await Token.findOne({
+        where: { token }
+    });
+    
+    if(findToken){
+        return res.status(401).json({ error: 'Token is expired' });
+    }
+   
 
     if (token == null) {
         return res.status(401).json({ error: 'Token missing' });

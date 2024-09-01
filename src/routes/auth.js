@@ -7,8 +7,8 @@ router.use(authenticateToken);
 
 router.get('/users', UserController.index);
 router.get('/users/:id', UserController.edit);
-router.post('/users', UserController.register); // Cria um novo usuário
-router.put('/users/:id', UserController.update); // Atualiza um usuário existente
-router.delete('/users/:id', UserController.deleteUser); // Deleta um usuário existente
+router.post('/users', UserController.create); 
+router.put('/users/:id', UserController.update); 
+router.delete('/users/:id', UserController.deleteUser);
 
 module.exports = router;

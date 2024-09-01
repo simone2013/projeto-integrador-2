@@ -1,7 +1,4 @@
 const { User } = require('../../models');
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
-
 
 const index = async (req, res) => {
   try {
@@ -11,7 +8,6 @@ const index = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
-
 
 const edit = async (req, res) => {
   try {
@@ -28,15 +24,10 @@ const edit = async (req, res) => {
   }
 };
 
-
-const register = async (req, res) => {
+const create = async (req, res) => {
   try {
     const request = req.body;
-    const email = request.email
-    const existingUser = await User.findOne({where: {email}})
-    if (existingUser) {
-        return res.status(400).json({ error: 'User already exists' });
-      }
+    console.log(request);
     
     const newUser = await User.create(request);
     res.status(201).json(newUser);
@@ -44,7 +35,6 @@ const register = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
-
 
 const update = async (req, res) => {
   try {
@@ -66,7 +56,6 @@ const update = async (req, res) => {
   }
 };
 
-
 const deleteUser = async (req, res) => {
   try {
     const id = req.params.id;
@@ -76,7 +65,6 @@ const deleteUser = async (req, res) => {
     if (!user) {
       return res.status(404).json({ error: 'User not found' });
     }
-
 
     await user.destroy();
     res.status(204).send();
@@ -88,7 +76,7 @@ const deleteUser = async (req, res) => {
 module.exports = {
   index,
   edit,
-  register,
+  create,
   update,
   deleteUser
 };
