@@ -1,7 +1,6 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
+const {Model} = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
   class Token extends Model {}
   Token.init({
@@ -10,6 +9,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Token',
+    tableName: 'invalid_tokens'
   });
   return Token;
 };

@@ -1,11 +1,13 @@
 'use strict';
-
-const { Model } = require('sequelize');
+const {Model} = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     static associate(models) {
-      // Definir associações aqui
+      User.hasMany(models.PasswordResetToken, {
+        foreignKey: 'user_id',
+        as: 'passwordResetToken',
+      });
     }
   }
   User.init({
@@ -26,7 +28,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'User',
-    tableName: 'Users',
+    tableName: 'users',
     timestamps: true
   });
   return User;
