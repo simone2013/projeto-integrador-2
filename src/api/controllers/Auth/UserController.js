@@ -27,8 +27,6 @@ const edit = async (req, res) => {
 const create = async (req, res) => {
   try {
     const request = req.body;
-    console.log(request);
-    
     const newUser = await User.create(request);
     res.status(201).json(newUser);
   } catch (error) {
