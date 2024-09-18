@@ -2,7 +2,9 @@ const express = require('express');
 const router = express.Router();
 const UserController = require('../api/controllers/auth/UserController');
 const RoleController = require('../api/controllers/auth/RoleController');
-const PermissionController = require('../api/controllers/auth/PermissionController'); // Importando o PermissionController
+const CreateUserAccessControlListController = require('../api/controllers/auth/CreateUserAccessControlListController');
+const PermissionController = require('../api/controllers/auth/PermissionController');
+
 const authenticateToken = require('../api/middleware/auth');
 
 router.use(authenticateToken);
@@ -27,5 +29,8 @@ router.get('/permissions/:id', PermissionController.edit); // Exibe uma permiss�
 router.post('/permissions', PermissionController.create); // Cria uma nova permissão
 router.put('/permissions/:id', PermissionController.update); // Atualiza uma permissão
 router.delete('/permissions/:id', PermissionController.destroy); // Deleta uma permissão
+
+// CreateUserAccess
+router.post('/users/:id/access', CreateUserAccessControlListController.CreateUserAccess);
 
 module.exports = router;

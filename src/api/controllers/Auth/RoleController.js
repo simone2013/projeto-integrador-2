@@ -12,9 +12,9 @@ const index = async (req, res) => {
 const edit = async (req, res) => {
   try {
     const id = req.params.id;
-    const role = await Role.findByPk(id); // corrigido para findByPk
+    const role = await Role.findByPk(id);
     if (!role) {
-      return res.status(404).json({ error: 'Role not found' }); // corrigido para 'Role'
+      return res.status(404).json({ error: 'Role not found' });
     }
     res.json(role);
   } catch (error) {
