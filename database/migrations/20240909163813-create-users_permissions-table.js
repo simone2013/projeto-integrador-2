@@ -4,7 +4,7 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('users_permissions', {
-      users_id: {
+      user_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
@@ -14,7 +14,7 @@ module.exports = {
         onUpdate: 'CASCADE',
         onDelete: 'RESTRICT'
       },
-      permissions_id: {
+      permission_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
@@ -23,11 +23,21 @@ module.exports = {
         },
         onUpdate: 'CASCADE',
         onDelete: 'RESTRICT'
+      },
+      createdAt: {
+        type: Sequelize.DATE,
+        allowNull: false,
+        defaultValue: Sequelize.NOW
+      },
+      updatedAt: {
+        type: Sequelize.DATE,
+        allowNull: false,
+        defaultValue: Sequelize.NOW
       }
     });
 
     await queryInterface.addConstraint('users_permissions', {
-      fields: ['users_id', 'permissions_id'],
+      fields: ['user_id', 'permission_id'],
       type: 'primary key',
       name: 'pk_users_permissions'
     });

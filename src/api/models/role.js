@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
 
       // Relação many-to-many com Permission
       Role.belongsToMany(models.Permission, {
-        through: 'roles_permissions', // Nome da tabela intermediária
+        through: 'permissions_roles', // Nome da tabela intermediária
         foreignKey: 'role_id',        // Chave estrangeira na tabela intermediária
         otherKey: 'permission_id',    // Outra chave estrangeira na tabela intermediária
         onDelete: 'RESTRICT',
