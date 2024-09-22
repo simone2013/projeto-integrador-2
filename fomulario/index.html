@@ -1,22 +1,57 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" >
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <title>formuário</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" >
+    <link href="style.css" rel="stylesheet">
+    <title>projeto</title>
+    <style>
+        .form-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
 </head>
-<body>
-    <h1>Formulário para preenchimento</h1>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-</body>
 
-<section class="p-3">
-    <div class="row">
-        <div class="col-12">
-            <table class="table"></table>
+  
+<body class="text-center"> 
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #6495ED">
+        <a class="navbar-brand" href="#">DoaFacil</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link text-dark" href="#">Home<span class="sr-only"></span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" href="#"><span class="sr-only">Cadastrados</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-dark" href="#"><span class="sr-only">Dashboard</span></a>
+              </li>
+           
+          </ul>
         </div>
+      </nav>
+   <div class="col-4 form-container">
+        <form>
+            <h1>Seja Bem-Vindo</h1>
+            <div class="input-group mb-3 mt-3">
+                <input type="text" class="form-control" placeholder="Cadastrar Doador/Beneficiário" aria-label="" aria-describedby="button-addon2">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="button" id="button-addon2">Pesquisar</button>
+                </div>
+            </div>
+            <div class="text-center">Ou</div>
+            <div class="form-floating mt-2">
+                <button class="btn btn-primary w-100 py-2 mt-3">Novo Cadastro</button>
+            </div>
+        </form>
     </div>
-
-</section>
+</body>
 </html>
