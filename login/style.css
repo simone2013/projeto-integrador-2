@@ -6,3 +6,11 @@ html, body{
     max-width: 350px;
     padding: 1rem;
 }
+
+hr {
+    border: 1px solid #007bff; /* Cor do hr */
+}
+
+.bg-white {
+    background-color: white; /* Fundo branco para o "ou" */
+}
