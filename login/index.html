@@ -36,7 +36,8 @@
                         <a href="" class="form-check-label">Alterar senha</a>
                     </div>
                 </div>
-                <button class="btn btn-primary w-100 py-2">login</button>
+                <!-- //type="submit" serve pra enviar os dados -->
+                <button type="submit" class="btn btn-primary w-100 py-2">Login</button>
                 <p class="mt-2 mb-2 text-center">ou</p>
                 <button class="btn btn-primary w-100 py-2">Crie sua conta</button>
                 
@@ -44,7 +45,13 @@
         </div>
     </div>
 </main>
-
+<script>
+    // Adicionando evento de redirecionamento no submit do formulário
+    document.getElementById('loginForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Previne o comportamento padrão do formulário
+        window.location.href = 'formulario/index.html'; // Redireciona para formulario/index.html
+    });
+</script>
 
 </body>
 </html>
