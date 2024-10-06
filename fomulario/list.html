@@ -34,7 +34,7 @@
                 <a class="nav-link text-dark" href="../fomulario/list.html">Cadastrados</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-dark" href="../fomulario/donations.html">Donations</a>
+                <a class="nav-link text-dark" href="../fomulario/Doações.html">Doações</a>
             </li>
             <li class="nav-item">
               <a class="nav-link text-dark" href="../fomulario/dashboard.html"> <span>Dashboard</span></a>
@@ -76,8 +76,8 @@
             <tbody>
                 <tr>
                     <th scope="row">1</th>
-                    <td>Bruno Oliveira Fonseca de Sousa</td>
-                    <td>43451576848</td>
+                    <td>Simone Pereira do Nascimento</td>
+                    <td>xxx.xxx.xxx-51</td>
                     <td>Doador</td>
                     <td><a href="#" data-bs-toggle="modal" data-bs-target="#staticBackdropUser">Incluir</a></td>
                     <td> 
@@ -166,8 +166,8 @@
                         <!-- dados de moradia -->
                         </div>   
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Understood</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                            <button type="button" class="btn btn-primary">Salvar</button>
                         </div> 
                     </div>
                 </div>
@@ -177,20 +177,29 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="staticBackdropUserLabel">Dados do Usuário</h1>
+                        <h1 class="modal-title fs-5" id="staticBackdropUserLabel">Dados do Recurso</h1>
                     </div>
                     <div class="modal-body text-start">
                         <!-- Conteúdo do modal -->
-                        <div class="mb-3 col">
-                            <label for="exampleFormControlInput1" class="form-label">Nome</label>
-                            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="">
-                        </div>
                         <div class="row">
+                            <!-- adicionar logica para se for doador abre modal de doador se nao de beneficiario -->
                             <div class="mb-3 col-5">
-                                <label for="exampleFormControlInput1" class="form-label">CPF</label>
+                                <label for="exampleFormControlInput1" class="form-label">Nome do Recurso</label>
                                 <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="">
                             </div>
-                            <!-- Resto do modal -->
+                            <div class="mb-3 col-4">
+                                <label for="exampleFormControlInput1" class="form-label">Quantidade</label>
+                                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="">
+                            </div>
+                            <div class="mb-3 col-3">
+                                <label for="exampleFormControlInput1" class="form-label">Data</label>
+                                <input type="date" class="form-control" id="exampleFormControlInput1" placeholder="">
+                            </div>
+                            
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleFormControlTextarea1">Descrição</label>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                         </div>
                     </div>
                     <div class="modal-footer">
