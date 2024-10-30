@@ -1,6 +1,6 @@
 'use strict';
 
-const { sequelize } = require('../../src/api/models');
+const { sequelize } = require('../../src/http/models');
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {

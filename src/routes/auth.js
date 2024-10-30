@@ -1,21 +1,21 @@
 const express = require('express');
 const router = express.Router();
-const {userPermissions, userRoles} = require('../api/middleware/permissions');
+const {userPermissions, userRoles} = require('../http/middleware/permissions');
 
-const UserController = require('../api/controllers/auth/UserController');
-const RoleController = require('../api/controllers/auth/RoleController');
-const CreateUserAccessControlListController = require('../api/controllers/auth/CreateUserAccessControlListController');
-const PermissionController = require('../api/controllers/auth/PermissionController');
-const CreateRolePermissionController = require('../api/controllers/auth/CreateRolePermissionController');
+const UserController = require('../http/controllers/auth/UserController');
+const RoleController = require('../http/controllers/auth/RoleController');
+const CreateUserAccessControlListController = require('../http/controllers/auth/CreateUserAccessControlListController');
+const PermissionController = require('../http/controllers/auth/PermissionController');
+const CreateRolePermissionController = require('../http/controllers/auth/CreateRolePermissionController');
 
-const authenticateToken = require('../api/middleware/auth');
+const authenticateToken = require('../http/middleware/auth');
 
 router.use(authenticateToken);
 
 // Rotas de usuários
-router.get('/users', userRoles('Creator'),userPermissions('delete_product'), UserController.index);
+router.get('/users', UserController.index);
 router.get('/users/:id', UserController.edit);
-router.post('/users',authenticateToken, userRoles('Admin'), UserController.create); 
+router.post('/users',authenticateToken, UserController.create); 
 router.put('/users/:id', UserController.update); 
 router.delete('/users/:id', UserController.deleteUser);
 

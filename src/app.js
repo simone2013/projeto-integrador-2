@@ -7,6 +7,6 @@ const auth = require('./routes/auth')
 const public = require('./routes/public')
 
 app.use('/api', auth);
-app.use('/auth', public);
+app.use('/', public);
 
 module.exports = app;
