@@ -2,6 +2,19 @@ const { User } = require('../models');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const { Token, PasswordResetToken } = require('../models');
+const path = require('path');
+
+
+const index = (req, res) => {
+    const filePath = path.join(__dirname, '../../views/login/index.html');
+    res.sendFile(filePath);
+};
+
+
+const create = (req, res) => {
+    const filePath = path.join(__dirname, '../../views/login/register.html');
+    res.sendFile(filePath);
+};
 
 const register = async (req, res) => {
     const request = req.body;
@@ -129,5 +142,7 @@ module.exports = {
     login,
     logout,
     forgotPassword,
-    resetPassword
+    resetPassword,
+    index,
+    create
 }

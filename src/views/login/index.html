@@ -31,20 +31,20 @@ hr {
    <main> 
     <div class="row">
         <div class="col-9">
-            <img src="login-img.png" alt="Login Image">
+            <img src="https://s3.sa-east-1.amazonaws.com/crecido.app/public/accounts/122/properties/28585cc6-8a04-410f-850b-097fdc9f082b/1ef96e92-81f3-65b2-97df-06f0bd791959.webp" alt="Login Image">
 
 
         </div>
         <div class="col align-self-center">
-            <form class="form-container">
+            <form id="loginForm" class="form-container">
                 <h1>Faça seu login</h1>
                 <div class="form-floating mb-3">
-                    <input type="email" class="form-control" id="floatingInput" placeholder="seu-email@gmail.com" required />
+                    <input type="email" name="email" class="form-control" id="floatingInput" placeholder="seu-email@gmail.com" required />
                     <label for="floatingInput">e-mail</label>
                 </div>
                 
                 <div class="form-floating">
-                    <input type="password" class="form-control" id="floatingPassword" placeholder="senha" required />
+                    <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="senha" required />
                     <label for="floatingPassword">senha</label>
                 </div>
                 
@@ -57,20 +57,52 @@ hr {
                         <a href="" class="form-check-label">Alterar senha</a>
                     </div>
                 </div>
-                <!-- //type="submit" serve pra enviar os dados -->
                 <button type="submit" class="btn btn-primary w-100 py-2">Login</button>
                 <p class="mt-2 mb-2 text-center">ou</p>
                 <button class="btn btn-primary w-100 py-2">Crie sua conta</button>
-                
             </form>
+            
         </div>
     </div>
 </main>
 <script>
     // Adicionando evento de redirecionamento no submit do formulário
-    document.getElementById('loginForm').addEventListener('submit', function(event) {
+  
+
+    document.getElementById('loginForm').addEventListener('submit', async function(event) {
         event.preventDefault(); // Previne o comportamento padrão do formulário
-        window.location.href = 'formulario/index.html'; // Redireciona para formulario/index.html
+
+        // Captura os dados do formulário
+        const email = document.getElementById('floatingInput').value;
+        const password = document.getElementById('floatingPassword').value;
+       
+        // Envia os dados para o backend
+        try {
+            const response = await fetch('http://localhost:3000/auth/login', { // substitua pela sua URL
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email, password }),
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                // Sucesso no login
+                console.log('Login bem-sucedido:', data);
+                localStorage.setItem('accessToken', data.accessToken);
+
+                // Aqui você pode redirecionar ou armazenar o token de acesso
+            } else {
+                // Erro no login
+                console.error('Erro:', data.error);
+                alert(data.error); // Exibe um alerta com a mensagem de erro
+            }
+        } catch (error) {
+            console.error('Erro ao fazer a requisição:', error);
+            alert('Erro ao tentar fazer login.');
+        }
     });
 </script>
 
