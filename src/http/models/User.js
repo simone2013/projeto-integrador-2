@@ -37,13 +37,46 @@ module.exports = (sequelize, DataTypes) => {
     },
     email: {
       type: DataTypes.STRING,
-      allowNull: false,
-      unique: true
+      allowNull: true  
     },
     password: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: true
     },
+    cpf: {
+      type: DataTypes.STRING,
+      allowNull: true,        // Opcional
+      unique: true            // CPF deve ser único
+    },
+    birth_date: {
+      type: DataTypes.DATEONLY,
+      allowNull: true         // Opcional
+    },
+    gender: {
+      type: DataTypes.ENUM('M', 'F', 'Other'), // Valores aceitos
+      allowNull: true         // Opcional
+    },
+    phone: {
+      type: DataTypes.STRING,
+      allowNull: true         // Opcional
+    },
+    user_type: {
+      type: DataTypes.ENUM('admin', 'user', 'guest'),
+      allowNull: true         // Opcional
+    },
+    street: {
+      type: DataTypes.STRING,
+      allowNull: true         // Opcional
+    },
+    neighborhood: {
+      type: DataTypes.STRING,
+      allowNull: true         // Opcional
+    },
+    complement: {
+      type: DataTypes.STRING,
+      allowNull: true         // Opcional
+    },
+   
   }, {
     sequelize,
     modelName: 'User',
