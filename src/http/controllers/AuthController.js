@@ -10,7 +10,6 @@ const index = (req, res) => {
     res.sendFile(filePath);
 };
 
-
 const create = (req, res) => {
     const filePath = path.join(__dirname, '../../views/login/register.html');
     res.sendFile(filePath);

@@ -59,26 +59,27 @@ hr {
                 </div>
                 <button type="submit" class="btn btn-primary w-100 py-2">Login</button>
                 <p class="mt-2 mb-2 text-center">ou</p>
-                <button class="btn btn-primary w-100 py-2">Crie sua conta</button>
+                <button class="btn btn-primary w-100 py-2" id="createAccountButton">Crie sua conta</button>
+
             </form>
             
         </div>
     </div>
 </main>
 <script>
-    // Adicionando evento de redirecionamento no submit do formulário
-  
+    document.getElementById('createAccountButton').addEventListener('click', function() {
+        // Redirecionando para a URL desejada
+        window.location.href = 'http://localhost:3000/create';
+    });
 
     document.getElementById('loginForm').addEventListener('submit', async function(event) {
-        event.preventDefault(); // Previne o comportamento padrão do formulário
+        event.preventDefault();
 
-        // Captura os dados do formulário
         const email = document.getElementById('floatingInput').value;
         const password = document.getElementById('floatingPassword').value;
        
-        // Envia os dados para o backend
         try {
-            const response = await fetch('http://localhost:3000/auth/login', { // substitua pela sua URL
+            const response = await fetch('http://localhost:3000/auth/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -89,15 +90,18 @@ hr {
             const data = await response.json();
 
             if (response.ok) {
-                // Sucesso no login
-                console.log('Login bem-sucedido:', data);
+          
                 localStorage.setItem('accessToken', data.accessToken);
 
-                // Aqui você pode redirecionar ou armazenar o token de acesso
+                const accessToken = localStorage.getItem('accessToken');
+         
+                if (accessToken) {
+                    window.location.href = 'http://localhost:3000/findDonations';
+                }
             } else {
-                // Erro no login
+            
                 console.error('Erro:', data.error);
-                alert(data.error); // Exibe um alerta com a mensagem de erro
+                alert(data.error);
             }
         } catch (error) {
             console.error('Erro ao fazer a requisição:', error);
