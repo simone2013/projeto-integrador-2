@@ -80,11 +80,21 @@ const findDonations = async (req, res) => {
     res.sendFile(filePath);
 };
 
+
+const donations = async (req, res) => {
+    
+  const filePath = path.join(__dirname, '../../../views/fomulario/list.html');
+
+  res.sendFile(filePath);
+
+};
+
 module.exports = {
   index,
   edit,
   create,
   update,
   deleteUser,
-  findDonations
+  findDonations,
+  donations
 };

@@ -6,4 +6,5 @@ const UserController = require('../http/controllers/auth/UserController')
 router.get('/', AuthController.index);
 router.get('/create', AuthController.create);
 router.get('/findDonations', UserController.findDonations);
+router.get('/donations', UserController.donations);
 module.exports = router;

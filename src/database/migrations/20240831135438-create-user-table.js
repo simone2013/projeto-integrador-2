@@ -37,7 +37,7 @@ module.exports = {
         allowNull: true       
       },
       user_type: {
-        type: Sequelize.ENUM('admin', 'user', 'guest'),
+        type: Sequelize.ENUM('donor', 'beneficiary'),
         allowNull: true 
       },
       street: {
@@ -46,6 +46,10 @@ module.exports = {
       },
       neighborhood: {
         type: Sequelize.STRING,
+        allowNull: true
+      },
+      number: {
+        type: Sequelize.INTEGER,
         allowNull: true
       },
       complement: {
@@ -63,6 +67,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Users');
+    await queryInterface.dropTable('users');
   }
 };

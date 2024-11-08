@@ -72,6 +72,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: true         // Opcional
     },
+    number: {
+      type: DataTypes.INTEGER,
+      allowNull: true         // Opcional
+    },
     complement: {
       type: DataTypes.STRING,
       allowNull: true         // Opcional
