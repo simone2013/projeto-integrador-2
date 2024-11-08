@@ -1,15 +1,37 @@
 const { User } = require('../../models');
 const path = require('path');
+const { Op } = require('sequelize');
+
 
 
 const index = async (req, res) => {
   try {
-    const users = await User.findAll();
-    res.json(users);
+    const { page = 1, limit = 10, name = '' } = req.query; // Pega os parâmetros da query (página, limite e nome)
+
+    const offset = (page - 1) * limit; // Calcula o offset para paginar os resultados
+
+    // Busca os usuários, filtrando pelo nome e aplicando a paginação
+    const users = await User.findAndCountAll({
+      where: {
+        name: {
+          [Op.like]: `%${name}%`, // Filtro por nome, insensível a maiúsculas/minúsculas
+        },
+      },
+      limit: parseInt(limit),
+      offset: offset,
+    });
+
+    res.json({
+      users: users.rows,
+      total: users.count,
+      page: page,
+      totalPages: Math.ceil(users.count / limit),
+    });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 };
+
 
 const edit = async (req, res) => {
   try {
