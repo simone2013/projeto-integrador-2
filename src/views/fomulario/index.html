@@ -101,7 +101,7 @@
                             <select class="form-select" id="user_type">
                               <option selected>Selecione</option>
                               <option value="donor">Doador</option>
-                              <option value="beneficiary'">Beneficiário</option>
+                              <option value="beneficiary">Beneficiário</option>
                             </select>
                           </div>
                         </div>
@@ -183,6 +183,7 @@
             },
             body: JSON.stringify(data)
           });
+          console.log(response)
           return await response.json();
         } catch (error) {
           console.error("Erro ao criar o usuário:", error);
@@ -219,7 +220,7 @@
           user_type: document.getElementById("user_type").value,
           number: document.getElementById("number").value,
         };
-    
+        console.log(data)
         const accessToken = localStorage.getItem('accessToken');
 
         try {
@@ -237,6 +238,7 @@
             setTimeout(() => {
       
               window.location.href = 'http://localhost:3000/donations';
+
             }, 2000); // 1 segundo (1000ms)
           } else {
             console.error("Erro: Dados do usuário não encontrados.");

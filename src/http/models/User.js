@@ -61,7 +61,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: true         // Opcional
     },
     user_type: {
-      type: DataTypes.ENUM('admin', 'user', 'guest'),
+      type: DataTypes.ENUM('donor', 'beneficiary'),
       allowNull: true         // Opcional
     },
     street: {
