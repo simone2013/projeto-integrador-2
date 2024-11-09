@@ -152,9 +152,9 @@
                 tableBody.innerHTML = '';
                 
                 data.forEach((distributions) => {
-                    console.log(distributions.user)
+                    console.log(distributions)
                     const row = document.createElement('tr');
-                    
+                
                     if(distributions.user.user_type === 'beneficiary') {
                         userTypeTranslated = 'Beneficiário';
                     }
@@ -163,7 +163,7 @@
                         
                         <td>${distributions.user.name}</td>
                         <td>${distributions.resource.name}</td>
-                        <td>${distributions.resource.quantity || 'Indefinido'}</td>
+                        <td>${distributions.quantity || 'Indefinido'}</td>
                         <td>${userTypeTranslated|| 'Indefinido'}</td>
                     `;
                     

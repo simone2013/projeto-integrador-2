@@ -255,12 +255,12 @@
                                 quantity: quantity,
                                 description: description
                             };
-
+                  
                             // Chama a função para criar o recurso e enviar para a API
                             try {
                                 const result = await createResource(data);
                             
-                                const distribution = await distributionCreate(user.id, result.id, quantity)
+                                const distribution = await distributionCreate(user.id, result.id, quantity, data.name)
                                 window.location.href = '/distribuicao';
                                 // Aqui você pode adicionar lógica para mostrar um aviso ou fechar o modal, por exemplo
                             } catch (error) {
@@ -285,7 +285,7 @@
                             try {
                                 const result = await createResource(data);
 
-                                const distribution = await donorCreate(user.id, result.id, quantity)
+                                const distribution = await donorCreate(user.id, result.id, quantity, data.name)
                                 window.location.href = '/doacoes';
                                 // Aqui você pode adicionar lógica para mostrar um aviso ou fechar o modal, por exemplo
                             } catch (error) {
@@ -352,14 +352,19 @@
                 }
             };
 
-            const distributionCreate = async (userId , resourceId, quantity) => {
+            const distributionCreate = async (userId, resourceId, quantity, name) => {
                 try {
+                    // Convertendo quantity para inteiro
+                    const quantityInt = parseInt(quantity, 10);
+
                     const accessToken = localStorage.getItem('accessToken');
                     const data = {
                         user_id: userId,
                         resource_id: resourceId,
-                        quantity: quantity
+                        quantity: quantityInt,  // Usando o valor convertido
+                        name: name
                     };
+
                     const response = await fetch("http://localhost:3000/api/distributions", {
                         method: "POST",
                         headers: {
@@ -376,13 +381,17 @@
                 }
             };
 
-            const donorCreate = async (userId, resourceId, quantity) => {
+
+            const donorCreate = async (userId, resourceId, quantity, name) => {
                 try {
+
+                    const quantityInt = parseInt(quantity, 10);
     
                     const data = {
                         user_id: userId,
                         resource_id: resourceId,
-                        quantity: quantity
+                        quantity: quantityInt,
+                        name: name
                     };
 
                     const accessToken = localStorage.getItem('accessToken');
