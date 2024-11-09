@@ -33,7 +33,7 @@
       <ul class="navbar-nav">
         <!-- Adicionei as rotas da barra de navegação -->
         <li class="nav-item">
-            <a class="nav-link text-dark" href="/pagina-inicial">Página Inicial<span class="sr-only"></span></a>
+            <a class="nav-link text-dark" href="/pagina-inicial">Home<span class="sr-only"></span></a>
         </li>
         <li class="nav-item">
             <a class="nav-link text-dark" href="/usuarios">Cadastrados</a>
@@ -100,7 +100,7 @@
                       <div class="modal-body">
                         <div class="mb-3 col">
                           <label for="name" class="form-label">Nome</label>
-                          <input type="text" class="form-control" id="name" placeholder="">
+                          <input type="text" class="form-control" id="username" placeholder="">
                         </div>
                         <div class="row">
                           <div class="mb-3 col-5">
@@ -245,6 +245,7 @@
 
       const createUser = async (data, accessToken) => {
         try {
+          console.log(data)
           const response = await fetch("http://localhost:3000/api/users", {
             method: "POST",
             headers: {
@@ -253,7 +254,7 @@
             },
             body: JSON.stringify(data)
           });
-          console.log(response)
+
           return await response.json();
         } catch (error) {
           console.error("Erro ao criar o usuário:", error);
@@ -279,7 +280,7 @@
 
       const submitForm = async () => {
         const data = {
-          name: document.getElementById("name").value,
+          name: document.getElementById("username").value,
           phone: document.getElementById("phone").value,
           cpf: document.getElementById("cpf").value,
           birth_date: document.getElementById("birth_date").value,
