@@ -4,6 +4,7 @@ const {userPermissions, userRoles} = require('../http/middleware/permissions');
 
 const UserController = require('../http/controllers/auth/UserController');
 const RoleController = require('../http/controllers/auth/RoleController');
+const ResourceController = require('../http/controllers/Auth/ResourceController')
 const CreateUserAccessControlListController = require('../http/controllers/auth/CreateUserAccessControlListController');
 const PermissionController = require('../http/controllers/auth/PermissionController');
 const CreateRolePermissionController = require('../http/controllers/auth/CreateRolePermissionController');
@@ -19,20 +20,14 @@ router.post('/users',authenticateToken, UserController.create);
 router.put('/users/:id', UserController.update); 
 router.delete('/users/:id', UserController.deleteUser);
 
+// Rota de recursos
 
-// Rotas de roles
-router.get('/roles', RoleController.index);
-router.get('/roles/:id', RoleController.edit);
-router.post('/roles', RoleController.create); 
-router.put('/roles/:id', RoleController.update); 
-router.delete('/roles/:id', RoleController.destroy);
+router.get('/resource', ResourceController.index);
+router.get('/resource/:id', ResourceController.edit);
+router.post('/resource', ResourceController.create); 
+router.put('/resource/:id', ResourceController.update); 
+router.delete('/resource/:id', ResourceController.deleteResource);
 
-// Rotas de permissions
-router.get('/permissions', PermissionController.index); // Lista todas as permissões
-router.get('/permissions/:id', PermissionController.edit); // Exibe uma permissão específica
-router.post('/permissions', PermissionController.create); // Cria uma nova permissão
-router.put('/permissions/:id', PermissionController.update); // Atualiza uma permissão
-router.delete('/permissions/:id', PermissionController.destroy); // Deleta uma permissão
 
 // CreateUserAccess
 router.post('/users/:id/access', CreateUserAccessControlListController.CreateUserAccess);
