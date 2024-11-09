@@ -19,6 +19,7 @@ router.post('/users',authenticateToken, UserController.create);
 router.put('/users/:id', UserController.update); 
 router.delete('/users/:id', UserController.deleteUser);
 
+
 // Rotas de roles
 router.get('/roles', RoleController.index);
 router.get('/roles/:id', RoleController.edit);

@@ -75,92 +75,89 @@
                 <!-- Linhas de usuários serão inseridas aqui dinamicamente -->
             </tbody>
         </table>
-        <div class="modal fade  modal-lg" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal fade modal-lg" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Dados do Usuário</h1>
-                    
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Dados do Usuário</h1>
                     </div>
                     <div class="modal-body text-start">
+                        <!-- Dados do formulário -->
                         <div class="mb-3 col">
-                            <label for="exampleFormControlInput1" class="form-label">Nome</label>
-                            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="">
+                           
+                            <input type="text" class="form-control" id="user-id" placeholder="">
+                        </div>
+                        <div class="mb-3 col">
+                            <label for="user-name" class="form-label">Nome</label>
+                            <input type="text" class="form-control" id="user-name" placeholder="">
                         </div>
                         <div class="row">
                             <div class="mb-3 col-5">
-                                <label for="exampleFormControlInput1" class="form-label">CPF</label>
-                                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="">
+                                <label for="user-cpf" class="form-label">CPF</label>
+                                <input type="text" class="form-control" id="user-cpf" placeholder="">
                             </div>
                             <div class="mb-3 col-3">
-                                <label for="exampleFormControlInput1" class="form-label">Data de Nascimento</label>
-                                <input type="date" class="form-control" id="exampleFormControlInput1" placeholder="">
+                                <label for="user-birthdate" class="form-label">Data de Nascimento</label>
+                                <input type="date" class="form-control" id="user-birthdate" placeholder="">
                             </div>
                             <div class="mb-3 col-3">
-                            <label for="exampleFormControlInput1" class="form-label">Sexo</label>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                <label class="form-check-label" for="flexCheckDefault">
-                                    Masculino
-                                </label>
+                                <label for="user-gender" class="form-label">Sexo</label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="gender" value="M" id="user-gender-male">
+                                    <label class="form-check-label" for="user-gender-male">Masculino</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="gender" value="F" id="user-gender-female">
+                                    <label class="form-check-label" for="user-gender-female">Feminino</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="gender" value="O" id="user-gender-other">
+                                    <label class="form-check-label" for="user-gender-other">Outros</label>
+                                </div>
                             </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
-                                <label class="form-check-label" for="flexCheckChecked">
-                                    Feminino
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
-                                <label class="form-check-label" for="flexCheckChecked">
-                                    Outros
-                                </label>
-                            </div>
-                        </div>   
+                        </div>
+                        <!-- Outros campos de entrada -->
                         <div class="row">
                             <div class="mb-3 col-6">
-                                <label for="exampleFormControlInput1" class="form-label">Telefone</label>
-                                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="">
+                                <label for="user-phone" class="form-label">Telefone</label>
+                                <input type="text" class="form-control" id="user-phone" placeholder="">
                             </div>
                             <div class="mb-3 col-6">
-                                <label for="exampleFormControlInput1" class="form-label">Tipo de Usuário</label>
-                                <select class="form-select" aria-label="Default select example">
-                                    <option selected>Selecione</option>
+                                <label for="user-type" class="form-label">Tipo de Usuário</label>
+                                <select class="form-select" id="user-type">
                                     <option value="1">Doador</option>
                                     <option value="2">Beneficiário</option>
-                                    
                                 </select>
                             </div>
                             <div class="mb-3 col-12">
-                                <label for="exampleFormControlInput1" class="form-label">Rua</label>
-                                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="">
-                            </div>    
-                            </div class="row">
+                                <label for="user-street" class="form-label">Rua</label>
+                                <input type="text" class="form-control" id="user-street" placeholder="">
+                            </div>
+                        </div>
+                        <div class="row">
                             <div class="mb-3 col-5">
-                                <label for="exampleFormControlInput1" class="form-label">Bairro</label>
-                                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="">
+                                <label for="user-neighborhood" class="form-label">Bairro</label>
+                                <input type="text" class="form-control" id="user-neighborhood" placeholder="">
                             </div>
-                                
-                                <div class="mb-3 col-5">
-                                    <label for="exampleFormControlInput1" class="form-label">Complemento</label>
-                                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="">
-                                </div>
-
-                                <div class="mb-3 col-2">
-                                    <label for="exampleFormControlInput1" class="form-label">Número</label>
-                                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="">
-                                </div>
+                            <div class="mb-3 col-5">
+                                <label for="user-complement" class="form-label">Complemento</label>
+                                <input type="text" class="form-control" id="user-complement" placeholder="">
                             </div>
-                        <!-- dados de moradia -->
-                        </div>   
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Understood</button>
-                        </div> 
+                            <div class="mb-3 col-2">
+                                <label for="user-number" class="form-label">Número</label>
+                                <input type="text" class="form-control" id="user-number" placeholder="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                        <button type="button" class="btn btn-primary" onclick="updateUser()">Salvar</button>  <!-- Aqui você coloca o ID do usuário -->
                     </div>
                 </div>
             </div>
         </div>
+        
+        
         <div class="modal fade modal-lg" id="staticBackdropUser" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropUserLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -194,11 +191,10 @@
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
         <script>
-            // Função para buscar os dados do usuário
+
             const getUser = async (name = '') => {
                 const accessToken = localStorage.getItem('accessToken');
-                
-                // Criar a URL com o nome, se fornecido
+            
                 const url = name ? `http://localhost:3000/api/users?name=${encodeURIComponent(name)}` : 'http://localhost:3000/api/users';
                 
                 try {
@@ -214,11 +210,9 @@
                         throw new Error("Falha ao buscar os dados do usuário");
                     }
     
-                    // Converte a resposta para JSON
                     const data = await response.json();
                     console.log(data);
     
-                    // Filtra os usuários que possuem o tipo de usuário definido
                     const filteredUsers = data.users.filter(user => user.user_type !== null && user.user_type !== undefined);
                     fillUserTable(filteredUsers);
     
@@ -227,40 +221,213 @@
                 }
             };
     
-            // Função para preencher a tabela com os dados dos usuários
             const fillUserTable = (users) => {
                 const tableBody = document.getElementById('userTableBody');
-                tableBody.innerHTML = ''; // Limpa o corpo da tabela antes de adicionar as novas linhas
+                tableBody.innerHTML = '';
     
                 users.forEach((user) => {
-                    // Cria uma nova linha
+
                     const row = document.createElement('tr');
     
-                    // Preenche a linha com os dados do usuário
                     row.innerHTML = `
                         <th scope="row">${user.id}</th>
                         <td>${user.name}</td>
                         <td>${user.cpf}</td>
                         <td>${user.user_type || 'Indefinido'}</td>
                         <td><a href="#" data-bs-toggle="modal" data-bs-target="#staticBackdropUser">Incluir</a></td>
-                        <td>
-                            <i class="fa-solid fa-pencil mx-3" style="cursor:pointer" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></i>
-                            <i class="fa-solid fa-trash" style="color: red"></i>
+                         <td>
+                            <button class="btn btn-primary btn-sm" onclick="editUser('${user.id}')">Editar</button>
+                            <button class="btn btn-danger btn-sm" onclick="deleteUser('${user.id}')">Excluir</button>
                         </td>
                     `;
                     
-                    // Adiciona a linha à tabela
                     tableBody.appendChild(row);
                 });
             };
     
-            // Função que chama o getUser com o valor do filtro
             const filterData = () => {
-                const name = document.getElementById('searchInput').value.trim();  // Obter o valor digitado no filtro
-                getUser(name);  // Chama getUser com o nome (ou vazio se não houver filtro)
+                const name = document.getElementById('searchInput').value.trim();
+                getUser(name);
             };
-    
-            // Chama a função para obter os dados do usuário ao carregar a página
+            
+            const editUser = async (id) => {
+                const accessToken = localStorage.getItem('accessToken');
+                const url = `http://localhost:3000/api/users/${id}`;
+                
+                try {
+                    const response = await fetch(url, {
+                        method: "GET",
+                        headers: {
+                            "Content-Type": "application/json",
+                            "Authorization": `Bearer ${accessToken}`
+                        }
+                    });
+                    
+                    if (!response.ok) {
+                        throw new Error("Falha ao buscar os dados do usuário");
+                    }
+
+                    const data = await response.json();
+                  
+                    document.getElementById('user-id').value = data.id;
+                    document.getElementById('user-name').value = data.name;
+                    document.getElementById('user-cpf').value = data.cpf;
+                    document.getElementById('user-birthdate').value = data.birth_date;
+                    document.getElementById('user-phone').value = data.phone;
+                    document.getElementById('user-street').value = data.street;
+                    document.getElementById('user-neighborhood').value = data.neighborhood;
+                    document.getElementById('user-complement').value = data.complement;
+                    document.getElementById('user-number').value = data.number;
+
+                    // Preenchendo o tipo de usuário
+                    document.getElementById('user-type').value = data.user_type === 'beneficiary' ? '2' : '1';
+
+                    // Preenchendo o sexo (radio buttons)
+                    if (data.gender === 'M') {
+                        document.getElementById('user-gender-male').checked = true;
+                    } else if (data.gender === 'F') {
+                        document.getElementById('user-gender-female').checked = true;
+                    } else {
+                        document.getElementById('user-gender-other').checked = true;
+                    }
+
+                    // Abrindo o modal após preencher os dados
+                    var myModal = new bootstrap.Modal(document.getElementById('staticBackdrop'));
+                    myModal.show();  // Abre o modal
+
+                } catch (error) {
+                    console.error("Erro ao obter os dados do usuário:", error);
+                }
+            };
+
+            const updateUser = async () => {
+                
+                const id = document.getElementById('user-id').value;
+                const name = document.getElementById('user-name').value;
+                const cpf = document.getElementById('user-cpf').value;
+                const birthDate = document.getElementById('user-birthdate').value;
+                const phone = document.getElementById('user-phone').value;
+                const street = document.getElementById('user-street').value;
+                const neighborhood = document.getElementById('user-neighborhood').value;
+                const complement = document.getElementById('user-complement').value;
+                const number = document.getElementById('user-number').value;
+                const userType = document.getElementById('user-type').value;
+                const gender = document.querySelector('input[name="gender"]:checked') ? document.querySelector('input[name="gender"]:checked').value : null;
+
+                const updatedUser = {
+                    id,
+                    name,
+                    cpf,
+                    birth_date: birthDate,
+                    phone,
+                    street,
+                    neighborhood,
+                    complement,
+                    number,
+                    user_type: userType,
+                    gender
+                };
+             
+                const accessToken = localStorage.getItem('accessToken');
+                const url = `http://localhost:3000/api/users/${updatedUser.id}`;
+                
+                try {
+                    const response = await fetch(url, {
+                        method: "PUT",
+                        headers: {
+                            "Content-Type": "application/json",
+                            "Authorization": `Bearer ${accessToken}`
+                        },
+                        body: JSON.stringify(updatedUser)
+                    });
+                    
+                    if (!response.ok) {
+                        throw new Error("Falha ao atualizar os dados do usuário");
+                    }
+
+                    const data = await response.json();
+
+                    console.log("Usuário atualizado com sucesso:", data);
+
+                 
+                    location.reload();
+        
+                    alert('Usuário atualizado com sucesso!');
+                    
+                } catch (error) {
+                    console.error("Erro ao atualizar os dados do usuário:", error);
+                    alert('Erro ao atualizar o usuário. Tente novamente.');
+                }
+            };
+            const deleteUser = async (id) => {
+                const accessToken = localStorage.getItem('accessToken');
+                const url = `http://localhost:3000/api/users/${id}`;
+
+                try {
+                    const response = await fetch(url, {
+                    method: "DELETE",
+                    headers: {
+                        "Authorization": `Bearer ${accessToken}`,
+                        "Content-Type": "application/json"
+                    }
+                    });
+
+                    if (!response.ok) {
+                    throw new Error("Erro ao excluir o usuário");
+                    }
+
+                    const data = await response.json();
+
+                    // Recarregar a página
+                    window.location.reload();
+
+                    // Ou, se você preferir exibir uma mensagem de sucesso
+                    // alert("Usuário excluído com sucesso!");
+                } catch (error) {
+                    console.error("Erro ao excluir o usuário:", error);
+                    alert("Falha ao excluir o usuário. Tente novamente.");
+                }
+            };
+            const urlParams = new URLSearchParams(window.location.search);
+            const name = urlParams.get('name');
+
+            const findByParams = async (name = '') => {
+           
+                const accessToken = localStorage.getItem('accessToken');
+
+                const url = name ? `http://localhost:3000/api/users?name=${encodeURIComponent(name)}` : 'http://localhost:3000/api/users';
+
+                try {
+                    const response = await fetch(url, {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${accessToken}`
+                    }
+                    });
+
+                    if (!response.ok) {
+                    throw new Error("Falha ao buscar os dados do usuário");
+                    }
+
+                    const data = await response.json();
+                    console.log(data);
+
+                    // Filtrar os usuários pelo nome
+                    const filteredUsers = data.users.filter((user) => {
+                    return user.name.toLowerCase().includes(name.toLowerCase());
+                    });
+
+                    // Remover usuários com user_type nulo ou indefinido
+                    const validUsers = filteredUsers.filter((user) => user.user_type !== null && user.user_type !== undefined);
+
+                    fillUserTable(validUsers);
+
+                } catch (error) {
+                    console.error("Erro ao obter os dados do usuário:", error);
+                }
+                };
+            findByParams(name);
             getUser();
         </script>
         

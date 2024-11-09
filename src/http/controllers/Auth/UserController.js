@@ -89,7 +89,7 @@ const deleteUser = async (req, res) => {
     }
 
     await user.destroy();
-    res.status(204).send();
+    return res.status(200).json({ message: 'Usuário deletado com sucesso' });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -103,4 +103,5 @@ module.exports = {
   create,
   update,
   deleteUser
+
 };
