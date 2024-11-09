@@ -3,10 +3,25 @@ const { Distribution, User, Resource, Donation } = require('../../models');
 const index = async (req, res) => {
     try {
       const usuarios = await User.findAll();
-      const distribuicoes = await Distribution.findAll();
+      const distribuicoes = await Distribution.findAll({
+        include: [
+          {
+            model: Resource,
+            as: 'resource', 
+         
+          },
+        ],
+      });
       const recursos = await Resource.findAll();
-      const doacoes = await Donation.findAll();
-  
+      const doacoes = await Donation.findAll({
+        include: [
+          {
+            model: Resource,
+            as: 'resource', 
+         
+          },
+        ],
+      });
       res.json({
         totalUsuarios: usuarios.length,
         totalDistribuicoes: distribuicoes.length,
