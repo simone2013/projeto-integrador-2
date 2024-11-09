@@ -100,7 +100,7 @@
             
             <thead class="table-dark">
                 <tr>
-                    <th scope="col">#</th>
+                   
                     <th scope="col">Nome</th>
                     <th scope="col">Produto</th>
                     <th scope="col">Quantidade</th>
@@ -150,16 +150,21 @@
                 const tableBody = document.getElementById('userTableBody');
                 tableBody.innerHTML = '';
                 
-                data.forEach((distributions) => {
-                    console.log(distributions.user)
+                data.forEach((donor) => {
+                    console.log(donor.user)
                     const row = document.createElement('tr');
-    
+                   
+                    if(donor.user.user_type === 'donor') {
+                        userTypeTranslated = 'Doador';
+                    }
+
+                    console.log(userTypeTranslated)
                     row.innerHTML = `
-                        <th scope="row">${distributions.id}</th>
-                        <td>${distributions.user.name}</td>
-                        <td>${distributions.resource.name}</td>
-                        <td>${distributions.resource.quantity || 'Indefinido'}</td>
-                        <td>${distributions.user.user_type || 'Indefinido'}</td>
+                       
+                        <td>${donor.user.name}</td>
+                        <td>${donor.resource.name}</td>
+                        <td>${donor.resource.quantity || 'Indefinido'}</td>
+                        <td>${userTypeTranslated || 'Indefinido'}</td>
                     `;
                     
                     tableBody.appendChild(row);

@@ -32,7 +32,7 @@ router.delete('/resource/:id', ResourceController.deleteResource);
 router.get('/donations', DonationsController.index);
 router.post('/donations', DonationsController.create); 
 
-router.get('/index', DistributionController.index);
+router.get('/distributions', DistributionController.index);
 router.post('/distributions', DistributionController.create); 
 
 

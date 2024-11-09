@@ -54,9 +54,9 @@
         <h2 class="mt-3 mb-4">Dashboard de Recursos</h2>
         <div class="row">
             <div class="col-3"><div class="card text-center p-3"><h5>Usuários</h5><h3 id="total-usuarios">0</h3></div></div>
-            <div class="col-3"><div class="card text-center p-3"><h5>Produtos Doados</h5><h3 id="total-doacoes">0</h3></div></div>
+            <div class="col-3"><div class="card text-center p-3"><h5>Produtos recebidos</h5><h3 id="total-doacoes">0</h3></div></div>
+            <div class="col-3"><div class="card text-center p-3"><h5>Produtos distribuidos</h5><h3 id="total-distribuicoes">0</h3></div></div>
             <div class="col-3"><div class="card text-center p-3"><h5>Total de Produtos</h5><h3 id="total-recursos">0</h3></div></div>
-            <div class="col-3"><div class="card text-center p-3"><h5>Beneficiários</h5><h3 id="total-distribuicoes">0</h3></div></div>
         </div>
 
         <div class="row">
@@ -145,7 +145,7 @@
                   series: doacoesQuantidades,
                   chart: { type: 'pie', width: 380 },
                   labels: doacoesLabels,
-                  title: { text: 'Distribuição das Doações', align: 'center' },
+                  title: { text: 'Doações Recebidos', align: 'center' },
                   responsive: [{
                       breakpoint: 480,
                       options: {
@@ -168,7 +168,7 @@
                   series: distribuicoesQuantidades,
                   chart: { type: 'pie', width: 380 },
                   labels: distribuicoesLabels,
-                  title: { text: 'Distribuição dos Recursos', align: 'center' },
+                  title: { text: 'Doações Distribuido', align: 'center' },
                   responsive: [{
                       breakpoint: 480,
                       options: {

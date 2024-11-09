@@ -101,7 +101,7 @@
             
             <thead class="table-dark">
                 <tr>
-                    <th scope="col">#</th>
+                  
                     <th scope="col">Nome</th>
                     <th scope="col">Produto</th>
                     <th scope="col">Quantidade</th>
@@ -154,13 +154,17 @@
                 data.forEach((distributions) => {
                     console.log(distributions.user)
                     const row = document.createElement('tr');
-    
+                    
+                    if(distributions.user.user_type === 'beneficiary') {
+                        userTypeTranslated = 'Beneficiário';
+                    }
+                
                     row.innerHTML = `
-                        <th scope="row">${distributions.id}</th>
+                        
                         <td>${distributions.user.name}</td>
                         <td>${distributions.resource.name}</td>
                         <td>${distributions.resource.quantity || 'Indefinido'}</td>
-                        <td>${distributions.user.user_type || 'Indefinido'}</td>
+                        <td>${userTypeTranslated|| 'Indefinido'}</td>
                     `;
                     
                     tableBody.appendChild(row);
