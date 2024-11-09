@@ -34,7 +34,7 @@
                 <a class="nav-link text-dark" href="/usuarios">Cadastrados</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-dark" href="../fomulario/usuarios.html">usuarios</a>
+                <a class="nav-link text-dark" href="/produtos">Doações</a>
             </li>
             <li class="nav-item">
               <a class="nav-link text-dark" href="../fomulario/dashboard.html"> <span>Dashboard</span></a>
@@ -48,8 +48,8 @@
         <div class="row">
             <div class=" col-4 mt-3 col-4">
                 <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="Nome" aria-label="Recipient's username" aria-describedby="button-addon2">
-                <button class="btn btn-outline-secondary" type="button" id="button-addon2"> <i class="fa-solid fa-magnifying-glass"></i></button>
+                <input type="text" id="searchInput" class="form-control" placeholder="Nome" aria-label="Filtrar por nome" aria-describedby="button-addon2">
+                <button class="btn btn-outline-secondary" type="button" id="button-addon2"  onclick="filterData()"> <i class="fa-solid fa-magnifying-glass"></i></button>
                 </div>
             </div>
             <div class="col-1"></div>
@@ -61,115 +61,226 @@
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Produto</th>
+                    <th scope="col">Descrição</th>
                     <th scope="col">Quantidade</th>
-                    <th scope="col">x</th>
-                 
+                    <th scope="col">Ações</th>   
                 </tr>
             </thead>
-            <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Trigo</td>
-                    <td>89</td>
-                    <td>Bruno Oliveira</td>
-                    
-                   
-                </tr>
-                
-                </tbody>
+
+            <tbody id="userTableBody">
+                <!-- Linhas de usuários serão inseridas aqui dinamicamente -->
             </tbody>
         </table>
-        <!-- Button trigger modal -->
-
-  
-  <!-- Modal -->
-    <div class="modal fade  modal-lg" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                <h1 class="modal-title fs-5" id="staticBackdropLabel">Dados do Usuário</h1>
-                
-                </div>
-                <div class="modal-body text-start">
-                    <div class="mb-3 col">
-                        <label for="exampleFormControlInput1" class="form-label">Nome</label>
-                        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="">
+        <div class="modal fade modal-lg" id="staticBackdropUser" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropUserLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropUserLabel">Dados do Produto</h1>
                     </div>
-                    <div class="row">
-                        <div class="mb-3 col-5">
-                            <label for="exampleFormControlInput1" class="form-label">CPF</label>
-                            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="">
-                        </div>
-                        <div class="mb-3 col-3">
-                            <label for="exampleFormControlInput1" class="form-label">Data de Nascimento</label>
-                            <input type="date" class="form-control" id="exampleFormControlInput1" placeholder="">
-                        </div>
-                        <div class="mb-3 col-3">
-                        <label for="exampleFormControlInput1" class="form-label">Sexo</label>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label class="form-check-label" for="flexCheckDefault">
-                                Masculino
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
-                            <label class="form-check-label" for="flexCheckChecked">
-                                Feminino
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
-                            <label class="form-check-label" for="flexCheckChecked">
-                                Outros
-                            </label>
-                        </div>
-                    </div>   
-                    <div class="row">
-                        <div class="mb-3 col-6">
-                            <label for="exampleFormControlInput1" class="form-label">Telefone</label>
-                            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="">
-                        </div>
-                        <div class="mb-3 col-6">
-                            <label for="exampleFormControlInput1" class="form-label">Tipo de Usuário</label>
-                            <select class="form-select" aria-label="Default select example">
-                                <option selected>Selecione</option>
-                                <option value="1">Doador</option>
-                                <option value="2">Beneficiário</option>
-                                
-                            </select>
-                        </div>
-                        <div class="mb-3 col-12">
-                            <label for="exampleFormControlInput1" class="form-label">Rua</label>
-                            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="">
-                        </div>    
-                        </div class="row">
-                        <div class="mb-3 col-5">
-                            <label for="exampleFormControlInput1" class="form-label">Bairro</label>
-                            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="">
-                        </div>
-                            
-                            <div class="mb-3 col-5">
-                                <label for="exampleFormControlInput1" class="form-label">Complemento</label>
-                                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="">
+                    <div class="modal-body text-start">
+                        <!-- Campo oculto para armazenar o ID do produto -->
+                        <input type="hidden" id="resource-id">
+                        
+                        <div class="row">
+                            <div class="mb-3 col-8">
+                                <label for="resource-name" class="form-label">Nome</label>
+                                <input type="text" class="form-control" id="resource-name" placeholder="">
                             </div>
-
-                            <div class="mb-3 col-2">
-                                <label for="exampleFormControlInput1" class="form-label">Número</label>
-                                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="">
+                            <div class="mb-3 col-4">
+                                <label for="resource-quantity" class="form-label">Quantidade</label>
+                                <input type="number" class="form-control" id="resource-quantity" placeholder="">
                             </div>
                         </div>
-                    <!-- dados de moradia -->
-                    </div>   
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Understood</button>
-                    </div> 
+                        <div class="mb-3 col">
+                            <label for="resource-description" class="form-label">Descrição</label>
+                            <textarea class="form-control" id="resource-description" placeholder="Insira a descrição aqui" rows="4"></textarea>
+                        </div>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                        <button type="button" class="btn btn-primary" onclick="updateResource()">Salvar</button>
+                    </div>
                 </div>
             </div>
         </div>
-      </div>
+
+
       <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
-</body>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+      <script>
+
+        const getUser = async (name = '') => {
+            const accessToken = localStorage.getItem('accessToken');
+        
+            const url = name ? `http://localhost:3000/api/resource?name=${encodeURIComponent(name)}` : 'http://localhost:3000/api/resource';
+            
+            try {
+                const response = await fetch(url, {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${accessToken}`
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error("Falha ao buscar os dados do usuário");
+                }
+
+                const data = await response.json();
+               
+
+               
+                fillUserTable(data);
+
+            } catch (error) {
+                console.error("Erro ao obter os dados do usuário:", error);
+            }
+        };
+       
+        const fillUserTable = (data) => {
+                const tableBody = document.getElementById('userTableBody');
+                tableBody.innerHTML = '';
+                
+                data.resource.forEach((resource) => {
+                  
+                    const row = document.createElement('tr');
+    
+                    row.innerHTML = `
+                        <th scope="row">${resource.id}</th>
+                        <td>${resource.name}</td>
+                        <td>${resource.description}</td>
+                        <td>${resource.quantity || 'Indefinido'}</td>
+                       
+                         <td>
+                            <button class="btn btn-primary btn-sm" onclick="editResource('${resource.id}')">Editar</button>
+                            <button class="btn btn-danger btn-sm" onclick="deleteResource('${resource.id}')">Excluir</button>
+                        </td>
+                    `;
+                    
+                    tableBody.appendChild(row);
+                });
+            };
+    
+            const filterData = () => {
+                const name = document.getElementById('searchInput').value.trim();
+                getUser(name);
+            };
+
+            const editResource = async (id) => {
+                const accessToken = localStorage.getItem('accessToken');
+                const url = `http://localhost:3000/api/resource/${id}`;
+
+                try {
+                    const response = await fetch(url, {
+                        method: "GET",
+                        headers: {
+                            "Content-Type": "application/json",
+                            "Authorization": `Bearer ${accessToken}`
+                        }
+                    });
+
+                    if (!response.ok) {
+                        throw new Error("Falha ao buscar os dados do produto");
+                    }
+
+                    const data = await response.json();
+
+                    document.getElementById('resource-id').value = data.id;
+                    document.getElementById('resource-name').value = data.name;
+                    document.getElementById('resource-quantity').value = data.quantity;
+                    document.getElementById('resource-description').value = data.description || '';
+
+                    const myModal = new bootstrap.Modal(document.getElementById('staticBackdropUser'));
+                    myModal.show();
+
+                } catch (error) {
+                    console.error("Erro ao obter os dados do produto:", error);
+                }
+            };
+
+            const updateResource = async () => {
+                // Obtendo os valores dos campos
+                const id = document.getElementById('resource-id').value;
+                const name = document.getElementById('resource-name').value;
+                const quantity = document.getElementById('resource-quantity').value;
+                const description = document.getElementById('resource-description').value;
+                console.log(id, name, quantity, description)
+                // Verificação adicional para garantir que o ID existe
+                if (!id) {
+                    alert('Erro: ID do produto não encontrado.');
+                    return;
+                }
+
+                const updatedProduct = {
+                    id,
+                    name,
+                    quantity,
+                    description
+                };
+
+                console.log(updatedProduct);
+
+                const accessToken = localStorage.getItem('accessToken');
+                const url = `http://localhost:3000/api/resource/${id}`;
+
+                try {
+                    const response = await fetch(url, {
+                        method: "PUT",
+                        headers: {
+                            "Content-Type": "application/json",
+                            "Authorization": `Bearer ${accessToken}`
+                        },
+                        body: JSON.stringify(updatedProduct)
+                    });
+
+                    if (!response.ok) {
+                        throw new Error("Falha ao atualizar os dados do produto");
+                    }
+
+                    const data = await response.json();
+                    console.log("Produto atualizado com sucesso:", data);
+
+                    alert('Produto atualizado com sucesso!');
+                    location.reload();
+
+                } catch (error) {
+                    console.error("Erro ao atualizar os dados do produto:", error);
+                    alert('Erro ao atualizar o produto. Tente novamente.');
+                }
+            };
+
+            const deleteResource = async (id) => {
+                const accessToken = localStorage.getItem('accessToken');
+                const url = `http://localhost:3000/api/resource/${id}`;
+
+                try {
+                    const response = await fetch(url, {
+                    method: "DELETE",
+                    headers: {
+                        "Authorization": `Bearer ${accessToken}`,
+                        "Content-Type": "application/json"
+                    }
+                    });
+
+                    if (!response.ok) {
+                    throw new Error("Erro ao excluir o usuário");
+                    }
+
+                    const data = await response.json();
+
+                    // Recarregar a página
+                    window.location.reload();
+
+                } catch (error) {
+                    console.error("Erro ao excluir o usuário:", error);
+                    alert("Falha ao excluir o usuário. Tente novamente.");
+                }
+            };
+
+
+        getUser();
+        </script>
+    </body>
 </html>

@@ -8,5 +8,6 @@ router.get('/', AuthController.index);
 router.get('/create', AuthController.create);
 router.get('/pagina-inicial', CrudController.findDonations);
 router.get('/usuarios', CrudController.donations);
+router.get('/produtos', CrudController.products);
 
 module.exports = router;
