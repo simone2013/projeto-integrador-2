@@ -381,8 +381,6 @@
                     // Recarregar a página
                     window.location.reload();
 
-                    // Ou, se você preferir exibir uma mensagem de sucesso
-                    // alert("Usuário excluído com sucesso!");
                 } catch (error) {
                     console.error("Erro ao excluir o usuário:", error);
                     alert("Falha ao excluir o usuário. Tente novamente.");
@@ -390,7 +388,7 @@
             };
             const urlParams = new URLSearchParams(window.location.search);
             const name = urlParams.get('name');
-
+            console.log(name)
             const findByParams = async (name = '') => {
            
                 const accessToken = localStorage.getItem('accessToken');
@@ -427,8 +425,13 @@
                     console.error("Erro ao obter os dados do usuário:", error);
                 }
                 };
-            findByParams(name);
-            getUser();
+            if(name){
+                findByParams(name);
+            }else{
+                getUser();
+            }
+           
+            
         </script>
         
 </body>
