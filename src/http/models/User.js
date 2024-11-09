@@ -11,22 +11,13 @@ module.exports = (sequelize, DataTypes) => {
         onUpdate: 'CASCADE'
       });
 
-      // Relação many-to-many com Role
-      User.belongsToMany(models.Role, {
-        through: 'users_roles', 
-        foreignKey: 'user_id', 
-        otherKey: 'role_id',  
-        onDelete: 'RESTRICT',
-        onUpdate: 'CASCADE'
-      });
-
-      // Relação many-to-many com Permission
-      User.belongsToMany(models.Permission, {
-        through: 'users_permissions', 
+      User.hasMany(models.Donation, {
         foreignKey: 'user_id',
-        otherKey: 'permission_id',
-        onUpdate: 'CASCADE'
+        as: 'donations', // Nome do alias para o relacionamento
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE',
       });
+      
     }
   }
 

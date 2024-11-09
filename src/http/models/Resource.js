@@ -5,7 +5,13 @@ module.exports = (sequelize, DataTypes) => {
   class Resource extends Model {
    
     static associate(models) {
-    
+      Resource.hasMany(models.Donation, {
+        foreignKey: 'resource_id',
+        as: 'donations',
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE',
+      });
+      
     }
   }
 
