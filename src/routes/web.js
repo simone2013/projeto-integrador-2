@@ -11,6 +11,6 @@ router.get('/usuarios', CrudController.donations);
 router.get('/produtos', CrudController.products);
 router.get('/distribuicao', CrudController.distribuition);
 router.get('/doacoes', CrudController.donationResource);
-
+router.get('/dashboard', CrudController.dashboardResource);
 
 module.exports = router;

@@ -29,10 +29,16 @@ const donationResource = async (req, res) => {
     res.sendFile(filePath);
 };
 
+const dashboardResource = async (req, res) => {
+    const filePath = path.join(__dirname, '../../../views/fomulario/dashboard.html');
+    res.sendFile(filePath);
+};
+
 module.exports = {
     findDonations,
     donations,
     products,
     distribuition,
-    donationResource
+    donationResource,
+    dashboardResource
 };
