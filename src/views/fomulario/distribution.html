@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" >
+    <link href="style.css" rel="stylesheet">
+    <title>projeto</title>
+    <style>
+        .form-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+
+  
+<body class="text-center"> 
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #6495ED">
+        <a class="navbar-brand me-2" href="../fomulario/index.html">DoaFacil</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <!-- Adicionei as rotas da barra de navegação -->
+            <li class="nav-item">
+                <a class="nav-link text-dark" href="/pagina-inicial">Home<span class="sr-only"></span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" href="/usuarios">Cadastrados</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" href="/produtos">Doações</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-dark" href="../fomulario/dashboard.html"> <span>Dashboard</span></a>
+            </li>
+           
+          </ul>
+        </div>
+      </nav>
+      
+      <div class="container">
+        
+        <div class="row mt-3 mb-3">
+            <!-- Campo de pesquisa -->
+            <div class="col-4">
+                <div class="input-group">
+                    <input type="text" id="searchInput" class="form-control" placeholder="Nome" aria-label="Filtrar por nome" aria-describedby="button-addon2">
+                    <button class="btn btn-outline-secondary" type="button" id="button-addon2" onclick="filterData()">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Botão "Adicionar" alinhado à direita -->
+            <div class="col-8 d-flex justify-content-end">
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdropResource">Adicionar</button>
+            </div>
+        </div>
+       
+        <table class="table container rounded mt-1 border">
+            
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Produto</th>
+                    <th scope="col">Descrição</th>
+                    <th scope="col">Quantidade</th>
+                    <th scope="col">Ações</th>   
+                </tr>
+            </thead>
+
+            <tbody id="userTableBody">
+                <!-- Linhas de usuários serão inseridas aqui dinamicamente -->
+            </tbody>
+        </table>
+          <div class="modal fade modal-lg" id="staticBackdropUser" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropUserLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropUserLabel">Dados do Produto</h1>
+                    </div>
+                    <div class="modal-body text-start">
+                        <!-- Campo oculto para armazenar o ID do produto -->
+                        <input type="hidden" id="resource-id">
+                        
+                        <div class="row">
+                            <div class="mb-3 col-8">
+                                <label for="resource-name" class="form-label">Nome</label>
+                                <input type="text" class="form-control" id="resource-name" placeholder="">
+                            </div>
+                            <div class="mb-3 col-4">
+                                <label for="resource-quantity" class="form-label">Quantidade</label>
+                                <input type="number" class="form-control" id="resource-quantity" placeholder="">
+                            </div>
+                        </div>
+                        <div class="mb-3 col">
+                            <label for="resource-description" class="form-label">Descrição</label>
+                            <textarea class="form-control" id="resource-description" placeholder="Insira a descrição aqui" rows="4"></textarea>
+                        </div>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                        <button type="button" class="btn btn-primary" onclick="updateResource()">Salvar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade modal-lg" id="staticBackdropResource" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropResourceLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropResourceLabel">Dados do Produto</h1>
+                    </div>
+                    <div class="modal-body text-start">
+                      
+                        <input type="hidden" id="resource-id">
+                        
+                        <div class="row">
+                            <div class="mb-3 col-8">
+                                <label for="resource-name" class="form-label">Nome</label>
+                                <input type="text" class="form-control" name="" id="resource-name-create" placeholder="">
+                            </div>
+                            <div class="mb-3 col-4">
+                                <label for="resource-quantity" class="form-label">Quantidade</label>
+                                <input type="number" class="form-control" id="resource-quantity-create" placeholder="">
+                            </div>
+                        </div>
+                        <div class="mb-3 col">
+                            <label for="resource-description" class="form-label">Descrição</label>
+                            <textarea class="form-control" id="resource-description-create" placeholder="Insira a descrição aqui" rows="4"></textarea>
+                        </div>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                        <button id="submit-btn" class="btn btn-primary">Salvar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+     
+    </body>
+</html>

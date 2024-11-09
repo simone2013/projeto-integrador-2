@@ -11,6 +11,14 @@ module.exports = (sequelize, DataTypes) => {
         onDelete: 'CASCADE',
         onUpdate: 'CASCADE',
       });
+
+      Resource.hasMany(models.Distribution, {
+        foreignKey: 'resource_id',
+        as: 'distribution', // Nome do alias para o relacionamento
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE',
+      });
+      
       
     }
   }

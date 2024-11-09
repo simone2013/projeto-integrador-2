@@ -13,7 +13,14 @@ module.exports = (sequelize, DataTypes) => {
 
       User.hasMany(models.Donation, {
         foreignKey: 'user_id',
-        as: 'donations', // Nome do alias para o relacionamento
+        as: 'donations',
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE',
+      });
+
+      User.hasMany(models.Distribution, {
+        foreignKey: 'user_id',
+        as: 'distribution',
         onDelete: 'CASCADE',
         onUpdate: 'CASCADE',
       });

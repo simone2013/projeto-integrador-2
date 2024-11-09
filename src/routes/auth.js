@@ -7,6 +7,7 @@ const ResourceController = require('../http/controllers/Auth/ResourceController'
 const CreateUserAccessControlListController = require('../http/controllers/auth/CreateUserAccessControlListController');
 const CreateRolePermissionController = require('../http/controllers/auth/CreateRolePermissionController');
 const DonationsController = require('../http/controllers/Auth/DonationsController');
+const DistributionController = require('../http/controllers/Auth/DistributionController');
 
 const authenticateToken = require('../http/middleware/auth');
 
@@ -28,12 +29,10 @@ router.put('/resource/:id', ResourceController.update);
 router.delete('/resource/:id', ResourceController.deleteResource);
 
 router.get('/donations', DonationsController.index);
-// router.get('/donations/:id', ResourceController.edit);
 router.post('/donations', DonationsController.create); 
-// router.put('/donations/:id', ResourceController.update); 
-// router.delete('/donations/:id', ResourceController.deleteResource);
 
-
+router.get('/distributions', DistributionController.index);
+router.post('/distributions', DistributionController.create); 
 
 // CreateUserAccess
 router.post('/users/:id/access', CreateUserAccessControlListController.CreateUserAccess);
