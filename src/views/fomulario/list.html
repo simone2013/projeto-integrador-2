@@ -28,13 +28,13 @@
           <ul class="navbar-nav">
             <!-- Adicionei as rotas da barra de navegação -->
             <li class="nav-item">
-                <a class="nav-link text-dark" href="../fomulario/index.html">Home<span class="sr-only"></span></a>
+                <a class="nav-link text-dark" href="/findDonations">Home<span class="sr-only"></span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-dark" href="../fomulario/list.html">Cadastrados</a>
+                <a class="nav-link text-dark" href="/usuarios">Cadastrados</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-dark" href="../fomulario/donations.html">Donations</a>
+                <a class="nav-link text-dark" href="../fomulario/usuarios.html">usuarios</a>
             </li>
             <li class="nav-item">
               <a class="nav-link text-dark" href="../fomulario/dashboard.html"> <span>Dashboard</span></a>
@@ -79,7 +79,7 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Dados do Usuário</h1>
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Dados do Recurso</h1>
                     </div>
                     <div class="modal-body text-start">
                         <!-- Dados do formulário -->
@@ -162,25 +162,25 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="staticBackdropUserLabel">Dados do Usuário</h1>
+                        <h1 class="modal-title fs-5" id="staticBackdropUserLabel">Dados do Produto</h1>
                     </div>
                     <div class="modal-body text-start">
-                        <!-- Conteúdo do modal -->
-                        <div class="mb-3 col">
-                            <label for="exampleFormControlInput1" class="form-label">Nome</label>
-                            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="">
-                        </div>
                         <div class="row">
-                            <div class="mb-3 col-5">
-                                <label for="exampleFormControlInput1" class="form-label">CPF</label>
-                                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="">
+                            <div class="mb-3 col-8">
+                                <label for="resource-name" class="form-label">Nome</label>
+                                <input type="text" class="form-control" id="resource-name" placeholder="">
                             </div>
-                            <!-- Resto do modal -->
+                            <div class="mb-3 col-4">
+                                <label for="resource-quantity" class="form-label">Quantidade</label>
+                                <input type="number" class="form-control" id="resource-quantity" placeholder="">
+                            </div>
                         </div>
-                    </div>
-                    <div class="modal-footer">
+                        <div class="mb-3 col">
+                            <label for="resource-description" class="form-label">Descrição</label>
+                            <textarea class="form-control" id="resource-description" placeholder="Insira a descrição aqui" rows="4"></textarea>
+                        </div>
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                        <button type="button" class="btn btn-primary">Salvar</button>
+                        <button id="submit-btn" class="btn btn-primary">Salvar</button>
                     </div>
                 </div>
             </div>
@@ -220,6 +220,52 @@
                     console.error("Erro ao obter os dados do usuário:", error);
                 }
             };
+
+            const createResource = async (data) => {
+                try {
+                    const accessToken = localStorage.getItem('accessToken');
+                    
+                    const response = await fetch("http://localhost:3000/api/resource", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                            "Authorization": `Bearer ${accessToken}`
+                        },
+                        body: JSON.stringify(data)
+                    });
+
+                    console.log(response);
+                    return await response.json();
+                } catch (error) {
+                    console.error("Erro ao criar o recurso:", error);
+                    throw error;
+                }
+            };
+
+            // Captura o evento de click no botão de salvar
+            document.getElementById('submit-btn').addEventListener('click', async () => {
+                // Coleta os valores dos campos
+                const name = document.getElementById('resource-name').value;
+                const quantity = document.getElementById('resource-quantity').value;
+                const description = document.getElementById('resource-description').value;
+
+                // Cria o objeto data
+                const data = {
+                    name: name,
+                    quantity: quantity,
+                    description: description
+                };
+
+                // Chama a função para criar o recurso e enviar para a API
+                try {
+                    const result = await createResource(data);
+                    console.log('Recurso criado com sucesso:', result);
+                    // Aqui você pode adicionar lógica para mostrar um aviso ou fechar o modal, por exemplo
+                } catch (error) {
+                    console.error('Erro ao criar recurso:', error);
+                }
+            });
+
     
             const fillUserTable = (users) => {
                 const tableBody = document.getElementById('userTableBody');

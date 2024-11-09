@@ -6,6 +6,7 @@ const CrudController = require('../http/controllers/Auth/CrudController')
 
 router.get('/', AuthController.index);
 router.get('/create', AuthController.create);
-router.get('/findDonations', CrudController.findDonations);
-router.get('/donations', CrudController.donations);
+router.get('/pagina-incial', CrudController.findDonations);
+router.get('/usuarios', CrudController.donations);
+
 module.exports = router;
