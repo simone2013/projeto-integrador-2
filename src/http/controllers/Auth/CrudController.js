@@ -14,6 +14,17 @@ const donations = async (req, res) => {
 };
 
 const products = async (req, res) => {
+    const filePath = path.join(__dirname, '../../../views/fomulario/resources.html');
+    res.sendFile(filePath);
+};
+
+
+const distribuition = async (req, res) => {
+    const filePath = path.join(__dirname, '../../../views/fomulario/distribution.html');
+    res.sendFile(filePath);
+};
+
+const donationResource = async (req, res) => {
     const filePath = path.join(__dirname, '../../../views/fomulario/donations.html');
     res.sendFile(filePath);
 };
@@ -21,5 +32,7 @@ const products = async (req, res) => {
 module.exports = {
     findDonations,
     donations,
-    products
+    products,
+    distribuition,
+    donationResource
 };

@@ -9,5 +9,8 @@ router.get('/create', AuthController.create);
 router.get('/pagina-inicial', CrudController.findDonations);
 router.get('/usuarios', CrudController.donations);
 router.get('/produtos', CrudController.products);
+router.get('/distribuicao', CrudController.distribuition);
+router.get('/doacoes', CrudController.donationResource);
+
 
 module.exports = router;
