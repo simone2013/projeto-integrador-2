@@ -1,14 +1,13 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" >
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="style.css" rel="stylesheet">
-    <title>projeto</title>
+    <title>Projeto</title>
     <style>
-        
         .form-container {
             position: absolute;
             top: 50%;
@@ -20,311 +19,168 @@
             margin: 35px auto;
             background-color: white;
         }
-        .b-color{
+        .b-color {
             background-color: white;
         }
     </style>
 </head>
 
-  
-<body style="background-color: #eff4f7;"> 
+<body style="background-color: #eff4f7;">
     <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #6495ED">
         <a class="navbar-brand me-2" href="../fomulario/index.html">DoaFacil</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav">
-            <!-- Adicionei as rotas da barra de navegação -->
-            <li class="nav-item">
-                <a class="nav-link text-dark" href="/pagina-inicial">Página Inicial<span class="sr-only"></span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-dark" href="/usuarios">Cadastrados</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-dark" href="/produtos">Recursos</a>
-            </li>
-        
-              <li class="nav-item">
-                <!-- Dropdown personalizado sem a caixa -->
-                <div class="dropdown">
-                  <button class="btn text-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                    Doação/Distribuição
-                  </button>
-                  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <li><a class="dropdown-item" href="/doacoes" data-action="donation">Doação</a></li>
-                    <li><a class="dropdown-item" href="/distribuicao" data-action="distribution">Distribuição</a></li>
-                  </ul>
-                </div>
-              </li>
-              
-              <!-- Incluindo Bootstrap JS -->
-              <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-              
-              
-            <li class="nav-item">
-              <a class="nav-link text-dark" href="/dashboard"> <span>Dashboard</span></a>
-            </li>
-           
-          </ul>
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link text-dark" href="/pagina-inicial">Página Inicial</a></li>
+                <li class="nav-item"><a class="nav-link text-dark" href="/usuarios">Cadastrados</a></li>
+                <li class="nav-item"><a class="nav-link text-dark" href="/produtos">Recursos</a></li>
+                <li class="nav-item">
+                    <div class="dropdown">
+                        <button class="btn text-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">Doação/Distribuição</button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <li><a class="dropdown-item" href="/doacoes">Doação</a></li>
+                            <li><a class="dropdown-item" href="/distribuicao">Distribuição</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item"><a class="nav-link text-dark" href="/dashboard">Dashboard</a></li>
+            </ul>
         </div>
     </nav>
+
     <div class="container">
-      <h2 class="mt-3 mb-4">Dashboard de Recursos</h2>
-      <div class="row">
-        <!-- Coluna para o Total de Usuários -->
-        <div class="col-3">
-          <div class="card text-center p-3">
-            <h5>Usuários</h5>
-            <h3 id="total-usuarios">0</h3>
-          </div>
+        <h2 class="mt-3 mb-4">Dashboard de Recursos</h2>
+        <div class="row">
+            <div class="col-3"><div class="card text-center p-3"><h5>Usuários</h5><h3 id="total-usuarios">0</h3></div></div>
+            <div class="col-3"><div class="card text-center p-3"><h5>Produtos Doados</h5><h3 id="total-doacoes">0</h3></div></div>
+            <div class="col-3"><div class="card text-center p-3"><h5>Total de Produtos</h5><h3 id="total-recursos">0</h3></div></div>
+            <div class="col-3"><div class="card text-center p-3"><h5>Beneficiários</h5><h3 id="total-distribuicoes">0</h3></div></div>
         </div>
-        
-        <!-- Coluna para o Total de Doações -->
-        <div class="col-3">
-          <div class="card text-center p-3">
-            <h5>Produtos Doados</h5>
-            <h3 id="total-doacoes">0</h3>
-          </div>
+
+        <div class="row">
+            <div class="chart border mt-5 col-6" id="chart1"></div>
+            <div class="chart border mt-5 col-6" id="chart2"></div>
         </div>
-    
-        <!-- Coluna para o Total de Recursos -->
-        <div class="col-3">
-          <div class="card text-center p-3">
-            <h5>Total de Produtos</h5>
-            <h3 id="total-recursos">0</h3>
-          </div>
+
+        <div class="row">
+            <div class="chart border mt-5 col-6" id="chart3"></div> <!-- Gráfico de pizza: Doações -->
+            <div class="chart border mt-5 col-6" id="chart4"></div> <!-- Gráfico de pizza: Distribuições -->
         </div>
-        
-        <!-- Coluna para o Total de Distribuições -->
-        <div class="col-3">
-          <div class="card text-center p-3">
-            <h5>Beneficiários</h5>
-            <h3 id="total-distribuicoes">0</h3>
-          </div>
-        </div>
-      </div>
     </div>
-   <div class="container">
-    <div class="row">
-      <div class="chart border mt-5 col-6" id="chart2"></div>
-      <div class="chart border mt-5 col-6" id="chart1"></div>
-      
-     </div>
-   </div>
-   <div class="container"></div>
-    <div class="row">
-      <div class="chart border mt-5 col-6" id="chart3"></div>
-      <div class="chart border mt-5 col-6" id="chart4"></div>
-      
-     </div>
-   </div>
-     
-    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
 
-<script>
-  document.addEventListener('DOMContentLoaded', async () => {
-    // Função para buscar dados da API
-    async function fetchData() {
-      const accessToken = localStorage.getItem('accessToken');
-      const url = `http://localhost:3000/api/dashboard`;
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const fetchData = async () => {
+                const accessToken = localStorage.getItem('accessToken');
+                const url = 'http://localhost:3000/api/dashboard';
+                try {
+                    const response = await fetch(url, {
+                        method: 'GET',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${accessToken}`
+                        }
+                    });
+                    if (!response.ok) throw new Error('Erro ao buscar dados da API');
+                    return await response.json();
+                } catch (error) {
+                    console.error('Erro:', error);
+                    return null;
+                }
+            };
 
-      try {
-        const response = await fetch(url, {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${accessToken}`
+            const data = await fetchData();
+            if (data) {
+                console.log(data);
+                const { totalUsuarios = 0, totalDistribuicoes = 0, totalRecursos = 0, totalDoacoes = 0, recursos = [], doacoes = [], distribuicoes = [] } = data;
+
+                // Atualizando os totais
+                document.querySelector('#total-usuarios').textContent = totalUsuarios;
+                document.querySelector('#total-doacoes').textContent = totalDoacoes;
+                document.querySelector('#total-recursos').textContent = totalRecursos;
+                document.querySelector('#total-distribuicoes').textContent = totalDistribuicoes;
+
+                // Gráfico de barras (recursos)
+                if (recursos.length > 0) {
+                    const produtos = recursos.map(item => item.name);
+                    const quantidades = recursos.map(item => item.quantity);
+                    new ApexCharts(document.querySelector("#chart1"), {
+                        series: [{ name: 'Quantidade', data: quantidades }],
+                        chart: { type: 'bar', height: 350 },
+                        plotOptions: { bar: { horizontal: false, columnWidth: '55%', endingShape: 'rounded' } },
+                        xaxis: { categories: produtos },
+                        yaxis: { title: { text: 'Quantidade' } },
+                        tooltip: { y: { formatter: val => val + " unidades" } }
+                    }).render();
+                }
+
+                // Gráfico de área (recursos por data)
+                if (recursos.length > 0) {
+                    const recursosData = recursos.map(item => item.createdAt);
+                    const recursosQuantidades = recursos.map(item => item.quantity);
+                    new ApexCharts(document.querySelector("#chart2"), {
+                        series: [{ name: 'Recursos', data: recursosQuantidades }],
+                        chart: { type: 'area', height: 350 },
+                        xaxis: { categories: recursosData, type: 'datetime' },
+                        yaxis: { title: { text: 'Quantidade de Recursos' } }
+                    }).render();
+                }
+
+                // Gráfico de pizza (doações)
+              // Gráfico de pizza - Doações
+          if (doacoes.length > 0) {
+              console.log(doacoes);  // Exibindo os dados para ver como estão
+              // Usando o nome do recurso como label e a quantidade como valor
+              const doacoesLabels = doacoes.map(item => item.resource.name);
+              const doacoesQuantidades = doacoes.map(item => item.quantity);
+
+              // Criando o gráfico de pizza para as doações
+              new ApexCharts(document.querySelector("#chart3"), {
+                  series: doacoesQuantidades,
+                  chart: { type: 'pie', width: 380 },
+                  labels: doacoesLabels,
+                  title: { text: 'Distribuição das Doações', align: 'center' },
+                  responsive: [{
+                      breakpoint: 480,
+                      options: {
+                          chart: { width: '100%' },
+                          legend: { position: 'bottom' }
+                      }
+                  }]
+              }).render();
           }
+
+          // Gráfico de pizza - Distribuições
+          if (distribuicoes.length > 0) {
+              console.log(distribuicoes);  // Exibindo os dados para ver como estão
+              // Usando o nome do recurso como label e a quantidade como valor
+              const distribuicoesLabels = distribuicoes.map(item => item.resource.name);
+              const distribuicoesQuantidades = distribuicoes.map(item => item.quantity);
+
+              // Criando o gráfico de pizza para as distribuições
+              new ApexCharts(document.querySelector("#chart4"), {
+                  series: distribuicoesQuantidades,
+                  chart: { type: 'pie', width: 380 },
+                  labels: distribuicoesLabels,
+                  title: { text: 'Distribuição dos Recursos', align: 'center' },
+                  responsive: [{
+                      breakpoint: 480,
+                      options: {
+                          chart: { width: '100%' },
+                          legend: { position: 'bottom' }
+                      }
+                  }]
+              }).render();
+          }
+
+            }
         });
-
-        if (!response.ok) throw new Error('Erro ao buscar dados da API');
-
-        const data = await response.json();
-        console.log('Dados da API:', data.doacoes);
-        return data;
-      } catch (error) {
-        console.error('Erro:', error);
-        return null;
-      }
-    }
-
-    // Inicializando com dados da API
-    const data = await fetchData();
-    if (data) {
-      // Desestruturando os valores dos totais
-      const { totalUsuarios = 0, totalDistribuicoes = 0, totalRecursos = 0, totalDoacoes = 0 } = data;
-      
-      // Atualizando os elementos com os totais
-      document.querySelector('#total-usuarios').textContent = totalUsuarios;
-      document.querySelector('#total-doacoes').textContent = totalDoacoes;
-      document.querySelector('#total-recursos').textContent = totalRecursos;
-      document.querySelector('#total-distribuicoes').textContent = totalDistribuicoes;
-
-      // Gerar gráfico de barras com produtos e suas quantidades
-      if (data.recursos && data.recursos.length > 0) {
-        const produtos = data.recursos.map(item => item.name);   // Nome dos produtos
-        const quantidades = data.recursos.map(item => item.quantity);  // Quantidades dos produtos
-
-        const optionsBar = {
-          series: [{
-            name: 'Quantidade',
-            data: quantidades
-          }],
-          chart: {
-            type: 'bar',
-            height: 350
-          },
-          plotOptions: {
-            bar: {
-              horizontal: false,
-              columnWidth: '55%',
-              endingShape: 'rounded'
-            }
-          },
-          dataLabels: {
-            enabled: false
-          },
-          stroke: {
-            show: true,
-            width: 2,
-            colors: ['transparent']
-          },
-          xaxis: {
-            categories: produtos,  // Nomes dos produtos no eixo X
-          },
-          yaxis: {
-            title: {
-              text: 'Quantidade'
-            }
-          },
-          fill: {
-            opacity: 1
-          },
-          tooltip: {
-            y: {
-              formatter: function (val) {
-                return val + " unidades";
-              }
-            }
-          }
-        };
-
-        // Renderizar o gráfico de barras
-        new ApexCharts(document.querySelector("#chart1"), optionsBar).render();
-
-        // Gerar gráfico de área para os recursos (exemplo de recurso por data)
-        const recursosData = data.recursos.map(item => item.createdAt);  // Data de criação dos recursos
-        const recursosQuantidades = data.recursos.map(item => item.quantity);  // Quantidade dos recursos
-
-        const optionsArea = {
-          series: [{
-            name: "Recursos",
-            data: recursosQuantidades
-          }],
-          chart: {
-            type: 'area',
-            height: 350,
-            zoom: {
-              enabled: false
-            }
-          },
-          dataLabels: {
-            enabled: false
-          },
-          stroke: {
-            curve: 'smooth'
-          },
-          title: {
-            text: 'Análise de Recursos',
-            align: 'left'
-          },
-          subtitle: {
-            text: 'Quantidades de recursos ao longo do tempo',
-            align: 'left'
-          },
-          xaxis: {
-            categories: recursosData,  // Usando a data de criação dos recursos no eixo X
-            type: 'datetime',  // Para mostrar as datas
-          },
-          yaxis: {
-            title: {
-              text: 'Quantidade de Recursos'
-            }
-          },
-          legend: {
-            horizontalAlign: 'left'
-          }
-        };
-
-        // Renderizar o gráfico de área
-        new ApexCharts(document.querySelector("#chart2"), optionsArea).render();
-      }
-    }
-    const data = await fetchData();
-    if (data) {
-      // Gráfico de pizza 1 - Exemplo usando o total de doações por categoria
-      const doacoesLabels = data.doacoes.map(item => item.categoria);  // Exemplo de categorias
-      const doacoesQuantidades = data.doacoes.map(item => item.quantidade);  // Quantidade de doações por categoria
-
-      const optionsPizza1 = {
-        series: doacoesQuantidades,  // Quantidades das doações
-        chart: {
-          type: 'pie',
-          width: 380
-        },
-        labels: doacoesLabels,  // Categorias das doações
-        responsive: [{
-          breakpoint: 480,
-          options: {
-            chart: {
-              width: 200
-            },
-            legend: {
-              position: 'bottom'
-            }
-          }
-        }]
-      };
-
-      // Renderizar gráfico de pizza 1
-      new ApexCharts(document.querySelector("#chart3"), optionsPizza1).render();
-
-      // Gráfico de pizza 2 - Exemplo usando o total de recursos por categoria
-      const recursosLabels = data.recursos.map(item => item.categoria);  // Exemplo de categorias de recursos
-      const recursosQuantidades = data.recursos.map(item => item.quantidade);  // Quantidade de recursos por categoria
-
-      const optionsPizza2 = {
-        series: recursosQuantidades,  // Quantidades de recursos
-        chart: {
-          type: 'pie',
-          width: 380
-        },
-        labels: recursosLabels,  // Categorias de recursos
-        responsive: [{
-          breakpoint: 480,
-          options: {
-            chart: {
-              width: 200
-            },
-            legend: {
-              position: 'bottom'
-            }
-          }
-        }]
-      };
-
-      // Renderizar gráfico de pizza 2
-      new ApexCharts(document.querySelector("#chart4"), optionsPizza2).render();
-    }
-  });
-  
-</script>
-
-
+    </script>
 </body>
 </html>
