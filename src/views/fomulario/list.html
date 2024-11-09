@@ -28,7 +28,7 @@
             <ul class="navbar-nav">
               <!-- Adicionei as rotas da barra de navegação -->
               <li class="nav-item">
-                  <a class="nav-link text-dark" href="/pagina-inicial">Home<span class="sr-only"></span></a>
+                  <a class="nav-link text-dark" href="/pagina-inicial">Página Inicial<span class="sr-only"></span></a>
               </li>
               <li class="nav-item">
                   <a class="nav-link text-dark" href="/usuarios">Cadastrados</a>
@@ -299,7 +299,9 @@
                         <td>${user.name}</td>
                         <td>${user.cpf}</td>
                         <td>${user.user_type || 'Indefinido'}</td>
-                        <td><a href="#" data-bs-toggle="modal" data-bs-target="#staticBackdropUser">Incluir</a></td>
+                        <td>
+                            <a href="#" data-bs-toggle="modal" data-bs-target="#staticBackdropUser" data-user-type="${user.user_type}">Incluir</a>
+                        </td>
                          <td>
                             <button class="btn btn-primary btn-sm" onclick="editUser('${user.id}')">Editar</button>
                             <button class="btn btn-danger btn-sm" onclick="deleteUser('${user.id}')">Excluir</button>
