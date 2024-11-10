@@ -105,7 +105,7 @@
                         <div class="row">
                           <div class="mb-3 col-5">
                             <label for="cpf" class="form-label">CPF</label>
-                            <input type="text" class="form-control" id="cpf" placeholder="">
+                            <input type="text" class="form-control cpf" id="cpf" placeholder="">
                           </div>
                           <div class="mb-3 col-3">
                             <label for="birth_date" class="form-label">Data de Nascimento</label>
@@ -120,10 +120,11 @@
                             </select>
                           </div>
                         </div>
+  
                         <div class="row">
                           <div class="mb-3 col-6">
                             <label for="phone" class="form-label">Telefone</label>
-                            <input type="text" class="form-control" id="phone" placeholder="">
+                            <input type="text" class="form-control telefone" id="phone" placeholder="">
                           </div>
                           <div class="mb-3 col-6">
                             <label for="user_type" class="form-label">Tipo de Usuário</label>
@@ -195,13 +196,23 @@
         </div>
     </div>
     
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery-Mask-Plugin/1.14.16/jquery.mask.min.js"></script>
-   <script>
+   <!-- Bootstrap CSS (latest stable version) -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- jQuery (latest version) -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Popper.js (required by Bootstrap JS) -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+
+<!-- Bootstrap JS (bundle version includes Popper) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+
+<!-- jQuery Mask Plugin -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery-Mask-Plugin/1.14.16/jquery.mask.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.min.js"></script>
+<script>
        const checkIfNameExists = async (name, accessToken) => {
             try {
                 const response = await fetch(`http://localhost:3000/api/users?name=${encodeURIComponent(name)}`, {
@@ -319,10 +330,36 @@
           console.error("Erro no processo de criação ou atualização do usuário:", error);
         }
       };
+      jQuery("input.telefone")
+        .mask("(99) 9999-9999?9")
+        .focusout(function (event) {  
+            var target, phone, element;  
+            target = (event.currentTarget) ? event.currentTarget : event.srcElement;  
+            phone = target.value.replace(/\D/g, '');
+            element = $(target);  
+            element.unmask();  
+            if(phone.length > 10) {  
+                element.mask("(99) 99999-999?9");  
+            } else {  
+                element.mask("(99) 9999-9999?9");  
+            }  
+        });
+        jQuery("input.cpf")
+    .mask("999.999.999-99")
+    .focusout(function (event) {  
+        var target, cpf, element;  
+        target = (event.currentTarget) ? event.currentTarget : event.srcElement;  
+        cpf = target.value.replace(/\D/g, ''); // Remove todos os caracteres não numéricos
+        element = $(target);  
+        element.unmask();  // Remove a máscara atual
+        if(cpf.length === 11) {  // Se o CPF tiver 11 números, aplica a máscara completa
+            element.mask("999.999.999-99");  
+        } else {  // Caso contrário, não aplica a máscara ou pode aplicar uma máscara mais curta
+            element.mask("999.999.999-99");  // A máscara de CPF padrão (não faz muita diferença)
+        }  
+    });
 
-      $(document).ready(function(){
-        $('#phone').mask('(00) 00000-0000'); // Máscara para telefone
-      });
+
 
     </script>
     
